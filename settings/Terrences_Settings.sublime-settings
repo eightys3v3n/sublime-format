@@ -1,0 +1,46 @@
+{
+    // Controls whether formatting is enabled.
+    // Can be overridden for individual scope selectors.
+    "enabled": true,
+
+    // Format current buffer on save. Disabled by default.
+    // Can be overridden for individual scope selectors.
+    "format_on_save": false,
+
+    // Controls how errors are displayed. Supported styles are:
+    //  - ""            -- hide errors completely
+    //  - "console"     -- print errors to the Sublime console
+    //  - "panel"       -- show an output panel at the bottom
+    //  - "dialog"      -- show obnoxious dialog windows
+    "error_style": "panel",
+
+    // The timeout, in seconds, applied to the subprocess running the formatter.
+    // An error will be displayed if formatting exceeds the duration of this timeout.
+    "timeout": 5,
+
+    // Formatting rules.
+    //
+    // Every rule is a dictionary, where the only required fields are:
+    //  - "command"     -- a list of strings to invoke the formatter process
+    //  - "selector"    -- a syntax type such as "source.python"
+    //
+    // All other fields are optional and override global settings.
+    //
+    // Example for Go:
+    //
+    //     "formatters": {
+    //         "Go": {
+    //             "command": ["goimports"],
+    //             "selector": "source.go",
+    //             "format_on_save": true
+    //         }
+    //     }
+    // the file contents is passed as stdin
+    // the stdout replaces the file contents
+    "formatters": {
+        "JSON": {
+            "command": ["python", "-c", "import json, sys; data = json.load(sys.stdin); json.dump(data, sys.stdout, indent=4)"],
+            "selector": "source.json",
+        }
+    }
+}
